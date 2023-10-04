@@ -1,0 +1,15 @@
+package qa.guru.geoservice.domain;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import qa.guru.geoservice.data.entity.GeoEntity;
+
+import java.util.List;
+
+public record GeoJson(@JsonProperty("country_name") String countryName,
+                      @JsonProperty("country_code") String countryCode,
+                      List<List<List<List<Double>>>> coordinates) {
+
+    public static GeoJson fromEntity(GeoEntity entity) {
+        return new GeoJson(entity.getCountryName(), entity.getCountryCode(), entity.getCoordinates());
+    }
+}
